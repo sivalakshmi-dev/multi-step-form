@@ -1,65 +1,315 @@
-import Image from "next/image";
+// // "use client";
+// // import { useState } from "react";
+// // export default function Home() {
+// //   const [step, setStep] = useState(1);
+
+// //   const nextstep = () => setStep(step + 1);
+
+// //   const prevstep = () => setStep(step - 1);
+
+// //   return (
+// //     <div>
+// //       <h1>multi step form</h1>
+// //       {step === 1 && (
+// //         <div>
+// //           <h2>step1</h2>
+// //           <input type="text" placeholder="Enter Name " />
+// //           <br></br>
+// //           <button onClick={nextstep}>
+// //             Next
+// //           </button>
+// //         </div>
+// //       )}
+
+// //       {step === 2 && (
+// //         <div>
+// //           <h2>step 2</h2>
+// //           <input type="email" placeholder="Enter Email" />
+// //           <br></br>
+// //           <button onClick={prevstep}>
+// //             Back
+// //           </button>
+// //           <button onClick={nextstep}>
+// //             Next
+// //           </button>
+// //         </div>
+
+// //       )}
+
+// //       {step === 3 && (
+// //         <div>
+// //           <h2>Step 3</h2>
+// //           <input type="password" placeholder="Enter password" />
+// //           <br></br>
+// //           <button onClick={prevstep}>
+// //             Back
+// //           </button>
+
+// //           <button onClick={() => alert("Form submited!")}>
+// //             Submit
+// //           </button>
+// //         </div>
+// //       )}
+
+// //     </div>
+// //   );
+
+
+// // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// "use client";
+// import { useState } from "react";
+
+// export default function Home() {
+//   const [step, setStep] = useState(1);
+
+//   const nextStep = () => setStep((prev) => prev + 1);
+//   const prevStep = () => setStep((prev) => prev - 1);
+
+//   return (
+//     <div style={containerStyle}>
+//       <div style={cardStyle}>
+//         <h1 style={{ textAlign: "center" }}>Multi-Step Form</h1>
+
+//         {step === 1 && (
+//           <>
+//             <input style={inputStyle} type="text" placeholder="Enter Name" />
+//             <button style={buttonStyle} onClick={nextStep}>
+//               Next
+//             </button>
+//           </>
+//         )}
+
+//         {step === 2 && (
+//           <>
+//             <input style={inputStyle} type="email" placeholder="Enter Email" />
+//             <div>
+//               <button style={backButton} onClick={prevStep}>
+//                 Back
+//               </button>
+//               <button style={buttonStyle} onClick={nextStep}>
+//                 Next
+//               </button>
+//             </div>
+//           </>
+//         )}
+
+//         {step === 3 && (
+//           <>
+//             <input
+//               style={inputStyle}
+//               type="password"
+//               placeholder="Enter Password"
+//             />
+//             <div>
+//               <button style={backButton} onClick={prevStep}>
+//                 Back
+//               </button>
+//               <button
+//                 style={buttonStyle}
+//                 onClick={() => alert("Form Submitted!")}
+//               >
+//                 Submit
+//               </button>
+//             </div>
+//           </>
+//         )}
+//       </div>
+//     </div>
+//   );
+// }
+
+// /* Styles */
+// const containerStyle = {
+//   display: "flex",
+//   justifyContent: "center",
+//   alignItems: "center",
+//   height: "100vh",
+//   background: "#f5f7fa",
+// };
+
+// const cardStyle = {
+//   width: "350px",
+//   padding: "30px",
+//   background: "white",
+//   borderRadius: "10px",
+//   boxShadow: "0 4px 15px rgba(0,0,0,0.1)",
+// };
+
+// const inputStyle = {
+//   width: "100%",
+//   padding: "10px",
+//   margin: "10px 0",
+//   borderRadius: "5px",
+//   border: "1px solid #ddd",
+// };
+
+// const buttonStyle = {
+//   padding: "10px 15px",
+//   margin: "5px",
+//   borderRadius: "5px",
+//   border: "none",
+//   background: "#4f46e5",
+//   color: "white",
+//   cursor: "pointer",
+// };
+
+// const backButton = {
+//   ...buttonStyle,
+//   background: "#999",
+// };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"use client";
+
+import { useState } from "react";
 
 export default function Home() {
+  const [step, setStep] = useState<number>(1);
+
+  const nextStep = () => {
+    if (step < 3) {
+      setStep(step + 1);
+    }
+  };
+
+  const prevStep = () => {
+    if (step > 1) {
+      setStep(step - 1);
+    }
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    alert("Form Submitted Successfully ✅");
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <div className="wrapper">
+      <div className="container">
+        {/* Progress Bar */}
+        <div className="progress">
+          {[1, 2, 3].map((item) => (
+            <div
+              key={item}
+              className={`step ${step >= item ? "active" : ""}`}
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+              <div className="circle">{item}</div>
+              <p>
+                {item === 1 && "Contact Info"}
+                {item === 2 && "Personal Info"}
+                {item === 3 && "Finish"}
+              </p>
+            </div>
+          ))}
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+
+        <h2>Personal Information - Step {step}</h2>
+
+        <form onSubmit={handleSubmit} className="form">
+          {/* Same Form Every Step */}
+          <input type="text" placeholder="Fullname" required />
+          <input type="email" placeholder="Email" required />
+          <input type="text" placeholder="Phone Number" required />
+          <input type="date" required />
+
+          <div className="buttons">
+            {step > 1 && (
+              <button
+                type="button"
+                className="cancel"
+                onClick={prevStep}
+              >
+                Back
+              </button>
+            )}
+
+            {step < 3 && (
+              <button
+                type="button"
+                className="next"
+                onClick={nextStep}
+              >
+                Next
+              </button>
+            )}
+
+            {step === 3 && (
+              <button type="submit" className="next">
+                Submit
+              </button>
+            )}
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
